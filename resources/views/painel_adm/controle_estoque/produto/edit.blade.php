@@ -41,7 +41,7 @@
 
         <div class="form-group col-md-4">
             <label for="alerta_estoque">Alerta de estoque</label>
-            <input id="inputAlertaEstoque" type="number" name="alerta_estoque" class="form-control" required placeholder="0"
+            <input id="inputAlertaEstoque" type="number" name="alerta_estoque" class="form-control" placeholder="0"
                 step="1" min="0" value="{{ $produto->alerta_estoque }}">
         </div>
 
