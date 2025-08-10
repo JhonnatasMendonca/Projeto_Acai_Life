@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\DashboardController;
+namespace App\Http\Controllers;
 
 use App\Models\Venda;
 use App\Models\Produto;

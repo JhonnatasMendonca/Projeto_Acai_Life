@@ -51,7 +51,8 @@ class VendaController
             foreach ($data['produtos'] as $item) {
                 $produto = Produto::findOrFail($item['produto_id']);
 
-                if ($data['status'] === 'pago' && $produto->estoque_inicial < $item['quantidade']) {
+                // Se o produto usa insumo, ignora o estoque do produto e faz validação/abatimento apenas nos insumos
+                if ($data['status'] === 'pago' && !$produto->usa_insumo && $produto->estoque_inicial < $item['quantidade']) {
                     throw new \Exception("Estoque insuficiente para o produto: {$produto->nome}");
                 }
 
@@ -95,14 +96,13 @@ class VendaController
                     $produto = $item['produto_ref'];
                     if ($produto->usa_insumo) {
                         foreach ($produto->insumos as $insumo) {
-                            // Unidade
                             if ($insumo->unidade_medida === 'Unidade') {
                                 $quantidade_usada = $insumo->pivot->quantidade * $item['quantidade'];
                                 Log::info('Cálculo de insumo por unidade', [
                                     'produto_id' => $produto->id,
                                     'produto_nome' => $produto->nome_produto ?? $produto->nome,
                                     'insumo_id' => $insumo->id,
-                                    'insumo_nome' => $insumo->nome,
+                                    'insumo_nome' => $insumo->nome_insumo,
                                     'quantidade_usada' => $quantidade_usada,
                                     'estoque_antes' => $insumo->estoque_insumo,
                                     'resultado' => $insumo->estoque_insumo >= $quantidade_usada ? 'sucesso' : 'erro',
@@ -117,10 +117,8 @@ class VendaController
                                     'insumo_id' => $insumo->id,
                                     'estoque_depois' => $insumo->estoque_insumo
                                 ]);
-                            }
-                            // Quilo
-                            elseif ($insumo->unidade_medida === 'Quilo') {
-                                $gramas_por_produto = $insumo->pivot->quantidade; // em gramas
+                            } elseif ($insumo->unidade_medida === 'Quilo') {
+                                $gramas_por_produto = $insumo->pivot->gramatura; // em gramas
                                 $gramas_total = $gramas_por_produto * $item['quantidade'];
                                 $peso_total_antes = $insumo->peso_total;
                                 $peso_total = $insumo->peso_total - ($gramas_total / 1000); // peso_total em quilos
@@ -151,7 +149,7 @@ class VendaController
                                             'estoque_insumo' => $insumo->estoque_insumo,
                                             'peso_total' => $peso_total
                                         ]);
-                                        throw new \Exception("Estoque insuficiente do insumo: {$insumo->nome}");
+                                        throw new \Exception("Estoque insuficiente do insumo: {$insumo->nome_insumo}");
                                     } else {
                                         break;
                                     }
@@ -240,9 +238,8 @@ class VendaController
                 // Se estava pendente e foi paga, abate estoque e registra no caixa
                 foreach ($venda->itens as $item) {
                     $produto = Produto::findOrFail($item->produto_id);
-                    if ($produto->usa_insumo) {
+                    if ($produto->usa_insumo === 1) {
                         foreach ($produto->insumos as $insumo) {
-                            // Unidade
                             if ($insumo->unidade_medida === 'Unidade') {
                                 $quantidade_usada = $insumo->pivot->quantidade * $item->quantidade;
                                 Log::info('Cálculo de insumo por unidade', [
@@ -250,7 +247,6 @@ class VendaController
                                     'produto_nome' => $produto->nome_produto ?? $produto->nome,
                                     'insumo_id' => $insumo->id,
                                     'insumo_nome' => $insumo->nome,
-                                    
                                     'quantidade_usada' => $quantidade_usada,
                                     'estoque_antes' => $insumo->estoque_insumo,
                                     'resultado' => $insumo->estoque_insumo >= $quantidade_usada ? 'sucesso' : 'erro',
@@ -265,10 +261,8 @@ class VendaController
                                     'insumo_id' => $insumo->id,
                                     'estoque_depois' => $insumo->estoque_insumo
                                 ]);
-                            }
-                            // Quilo
-                            elseif ($insumo->unidade_medida === 'Quilo') {
-                                $gramas_por_produto = $insumo->pivot->quantidade; // em gramas
+                            } elseif ($insumo->unidade_medida === 'Quilo') {
+                                $gramas_por_produto = $insumo->pivot->gramatura; // em gramas
                                 $gramas_total = $gramas_por_produto * $item->quantidade;
                                 $peso_total_antes = $insumo->peso_total;
                                 $peso_total = $insumo->peso_total - ($gramas_total / 1000); // peso_total em quilos

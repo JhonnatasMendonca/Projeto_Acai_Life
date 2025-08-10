@@ -56,7 +56,29 @@
                 {
                     headerName: 'Status',
                     field: 'status',
-                    minWidth: 100
+                    maxWidth: 120,
+                    pinned: 'left',
+                    cellRenderer: function(params) {
+                        let color, text;
+                        switch (params.value) {
+                            case 'pago':
+                                color = '#28a745'; // verde
+                                text = 'Pago';
+                                break;
+                            case 'pendente':
+                                color = '#ffc107'; // amarelo
+                                text = 'Pendente';
+                                break;
+                            case 'cancelado':
+                                color = '#dc3545'; // vermelho
+                                text = 'Cancelado';
+                                break;
+                            default:
+                                color = '#6c757d'; // cinza
+                                text = params.value || 'Desconhecido';
+                        }
+                        return `<span style="font-weight:bold; color:${color};">${text}</span>`;
+                    }
                 },
                 {
                     headerName: 'Data',

@@ -12,6 +12,8 @@
                 <option value="Salgados">Salgados</option>
                 <option value="Doces">Doces</option>
                 <option value="Açai">Açai</option>
+                <option value="Descartaveis">Descartáveis</option>
+                <option value="Outros">Outros</option>
             </select>
         </div>
         <div class="form-group col-md-12">

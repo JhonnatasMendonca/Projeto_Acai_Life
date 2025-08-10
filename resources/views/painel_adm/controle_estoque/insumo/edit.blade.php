@@ -26,6 +26,14 @@
                     {{ old('categoria_insumo', $insumo->categoria_insumo) == 'Açai' ? 'selected' : '' }}>
                     Açai
                 </option>
+                <option value="Descartaveis"
+                    {{ old('categoria_insumo', $insumo->categoria_insumo) == 'Descartaveis' ? 'selected' : '' }}>
+                    Descartáveis
+                </option>
+                <option value="Outros"
+                    {{ old('categoria_insumo', $insumo->categoria_insumo) == 'Outros' ? 'selected' : '' }}>
+                    Outros
+                </option>
             </select>
         </div>
         <div class="form-group col-md-12">
