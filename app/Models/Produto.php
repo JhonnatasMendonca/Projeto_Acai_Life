@@ -18,6 +18,7 @@ class Produto extends Model
         'preco_custo',
         'descricao',
         'estoque_inicial',
+        'alerta_estoque',
         'usa_insumo',
         'gramatura_insumo'
     ];

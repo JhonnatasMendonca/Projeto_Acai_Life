@@ -19,6 +19,7 @@ class Insumo extends Model
         'descricao_insumo',
         'preco_custo',
         'estoque_insumo',
+        'alerta_estoque',
         'unidade_medida',
         'peso_total',
     ];

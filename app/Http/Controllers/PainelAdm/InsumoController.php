@@ -24,6 +24,7 @@ class InsumoController
                 'descricao_insumo' => 'nullable|max:255',
                 'preco_custo' => 'required|numeric|min:0',
                 'estoque_insumo' => 'required|integer|min:0',
+                'alerta_estoque' => 'required|integer|min:0',
                 'unidade_medida' => 'required|max:10',
                 'peso_total' => 'nullable|numeric|min:0',
             ]);
@@ -34,6 +35,7 @@ class InsumoController
                 'descricao_insumo' => $request->input('descricao_insumo', null),
                 'preco_custo' => $request->input('preco_custo'),
                 'estoque_insumo' => $request->input('estoque_insumo'),
+                'alerta_estoque' => $request->input('alerta_estoque'),
                 'unidade_medida' => $request->input('unidade_medida'),
                 'peso_total' => $request->input('peso_total', null),
             ]);
@@ -79,6 +81,7 @@ class InsumoController
                 'descricao_insumo' => 'nullable|max:255',
                 'preco_custo' => 'sometimes|required|numeric|min:0',
                 'estoque_insumo' => 'sometimes|required|integer|min:0',
+                'alerta_estoque' => 'sometimes|required|integer|min:0',
                 'unidade_medida' => 'sometimes|required|max:10',
                 'peso_total' => 'nullable|numeric|min:0',
             ]);
@@ -95,6 +98,7 @@ class InsumoController
                 'descricao_insumo' => $request->input('descricao_insumo', $insumo->descricao_insumo),
                 'preco_custo' => $request->input('preco_custo', $insumo->preco_custo),
                 'estoque_insumo' => $request->input('estoque_insumo', $insumo->estoque_insumo),
+                'alerta_estoque' => $request->input('alerta_estoque', $insumo->alerta_estoque),
                 'unidade_medida' => $request->input('unidade_medida', $insumo->unidade_medida),
                 'peso_total' => $request->input('peso_total', $insumo->peso_total),
             ]);

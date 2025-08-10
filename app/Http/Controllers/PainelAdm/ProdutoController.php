@@ -41,9 +41,11 @@ class ProdutoController
                 ;
                 $rules['gramaturas'] = 'required|array|min:1';
                 $rules['estoque_inicial'] = 'nullable|integer|min:0';
+                $rules['alerta_estoque'] = 'nullable|integer|min:0';
                 $rules['quantidades'] = 'nullable|array|min:1';
             } else {
                 $rules['estoque_inicial'] = 'required|integer|min:0';
+                $rules['alerta_estoque'] = 'required|integer|min:0';
             }
 
             $request->validate($rules);
@@ -57,6 +59,7 @@ class ProdutoController
                 'preco_venda' => $request->input('preco_venda'),
                 'preco_custo' => $request->input('preco_custo'),
                 'estoque_inicial' => $request->input('estoque_inicial'),
+                'alerta_estoque' => $request->input('alerta_estoque'),
                 'usa_insumo' => $request->boolean('usa_insumo'),
             ]);
 
@@ -106,7 +109,7 @@ class ProdutoController
             // Regras de validação dinâmicas
             if (!$request->has('usa_insumo')) {
                 $request->merge(['usa_insumo' => false]);
-                $request->merge(['estoque_inicial' => 0]);
+                // $request->merge(['estoque_inicial' => 0]);
                 $request->merge(['quantidades' => [1]]);
             }
 
@@ -123,9 +126,11 @@ class ProdutoController
                 $rules['insumos'] = 'sometimes|required|array|min:1';
                 $rules['gramaturas'] = 'sometimes|required|array|min:1';
                 $rules['estoque_inicial'] = 'nullable|integer|min:0';
+                $rules['alerta_estoque'] = 'nullable|integer|min:0';
                 $rules['quantidades'] = 'nullable|array|min:1';
             } else {
                 $rules['estoque_inicial'] = 'sometimes|required|integer|min:0';
+                $rules['alerta_estoque'] = 'sometimes|required|integer|min:0';
             }
 
             $request->validate($rules);
@@ -145,6 +150,7 @@ class ProdutoController
                 'preco_venda',
                 'preco_custo',
                 'estoque_inicial',
+                'alerta_estoque',
                 'usa_insumo',
             ]));
 
@@ -171,7 +177,6 @@ class ProdutoController
         } catch (\Exception $e) {
             Log::error('Erro ao atualizar produto', [
                 'error' => $e->getMessage(),
-                'trace' => $e->getTraceAsString(),
                 'request' => $request->all()
             ]);
             return redirect()->back()->with('erro', 'Erro ao atualizar produto: ' . $e->getMessage());

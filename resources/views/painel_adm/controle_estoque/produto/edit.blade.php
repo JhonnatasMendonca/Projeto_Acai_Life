@@ -34,9 +34,15 @@
                 step="0.01" value="{{ $produto->preco_custo }}">
         </div>
         <div class="form-group col-md-4">
-            <label for="estoque_inicial">Estoque inicial</label>
+            <label for="estoque_inicial">Estoque</label>
             <input id="inputEstoque" type="number" name="estoque_inicial" class="form-control"  placeholder="0"
                 step="1" min="0" value="{{ $produto->estoque_inicial }}">
+        </div>
+
+        <div class="form-group col-md-4">
+            <label for="alerta_estoque">Alerta de estoque</label>
+            <input id="inputAlertaEstoque" type="number" name="alerta_estoque" class="form-control" required placeholder="0"
+                step="1" min="0" value="{{ $produto->alerta_estoque }}">
         </div>
 
         <div class="form-group col-md-12">

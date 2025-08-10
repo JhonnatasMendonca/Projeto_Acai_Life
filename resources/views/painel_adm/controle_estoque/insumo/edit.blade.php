@@ -47,9 +47,14 @@
                 step="0.01" value="{{ $insumo->preco_custo }}">
         </div>
         <div class="form-group col-md-4">
-            <label for="estoque_insumo">Estoque inicial</label>
+            <label for="estoque_insumo">Estoque</label>
             <input id="inputEstoque" type="number" name="estoque_insumo" class="form-control" required placeholder="0"
                 step="0.01" min="0" value="{{ $insumo->estoque_insumo }}">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="alerta_estoque">Alerta de estoque</label>
+            <input id="inputAlertaEstoque" type="number" name="alerta_estoque" class="form-control" required placeholder="0"
+                step="1" min="0" value="{{ $insumo->alerta_estoque }}">
         </div>
         <div class="form-group col-md-4">
             <label for="unidade_medida">Unidade de medida</label>

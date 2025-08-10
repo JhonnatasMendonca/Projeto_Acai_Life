@@ -26,8 +26,37 @@ class HomeController
             ->groupBy('categoria')
             ->get() ?? collect();
 
-        // Estoque atual por produto
-        $estoqueDistribuicao = Produto::select('nome_produto', 'estoque_inicial')->get() ?? collect();
+        // Produtos sem insumo
+        $produtosSemInsumo = Produto::where('usa_insumo', false)
+            ->select('nome_produto', 'estoque_inicial', 'alerta_estoque')
+            ->get() ?? collect();
+
+        // Insumos
+        $insumos = \App\Models\Insumo::select('nome_insumo as nome_produto', 'estoque_insumo as estoque_inicial', 'alerta_estoque')->get() ?? collect();
+
+        // Junta produtos e insumos para o gráfico
+        $estoqueDistribuicao = $produtosSemInsumo->concat($insumos);
+
+        // Alertas de estoque
+        $alertasEstoque = [];
+        foreach ($produtosSemInsumo as $produto) {
+            if (isset($produto->alerta_estoque) && $produto->estoque_inicial <= $produto->alerta_estoque) {
+                $alertasEstoque[] = [
+                    'nome' => $produto->nome_produto,
+                    'estoque' => $produto->estoque_inicial,
+                    'tipo' => 'Produto'
+                ];
+            }
+        }
+        foreach ($insumos as $insumo) {
+            if (isset($insumo->alerta_estoque) && $insumo->estoque_inicial <= $insumo->alerta_estoque) {
+                $alertasEstoque[] = [
+                    'nome' => $insumo->nome_produto,
+                    'estoque' => $insumo->estoque_inicial,
+                    'tipo' => 'Insumo'
+                ];
+            }
+        }
 
         // Cards de destaque
         $totalVendasHoje = Venda::whereDate('created_at', today())
@@ -69,7 +98,8 @@ class HomeController
             'faturamentoMesAtual' => $faturamentoMesAtual,
             'produtoMaisVendido' => $nomeProdutoMaisVendido,
             'lucroMesAtual' => $lucroMesAtual,
-            'despesaMesAtual' => $despesaMesAtual
+            'despesaMesAtual' => $despesaMesAtual,
+            'alertasEstoque' => $alertasEstoque
         ]);
     }
 }

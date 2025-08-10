@@ -26,10 +26,17 @@
                 step="0.01">
         </div>
         <div class="form-group col-md-4">
-            <label for="estoque_insumo">Estoque inicial</label>
+            <label for="estoque_insumo">Estoque</label>
             <input id="inputEstoque" type="number" name="estoque_insumo" class="form-control" required placeholder="0"
                 step="0.01" min="0">
         </div>
+        
+        <div class="form-group col-md-4">
+            <label for="alerta_estoque">Alerta de estoque</label>
+            <input id="inputAlertaEstoque" type="number" name="alerta_estoque" class="form-control" required placeholder="0"
+                step="1" min="0">
+        </div>
+
         <div class="form-group col-md-4">
             <label for="unidade_medida">Unidade de medida</label>
             <select id="unidadeMedida" name="unidade_medida" class="form-control" required>
