@@ -51,68 +51,39 @@
         }
     </style>
 
-
-    
-
     <h2 class="mt-4 mb-2">
         <i class="bi-bar-chart"></i> Dashboard - Controle de Estoque e Vendas
     </h2>
     <hr style="border: 1px solid #fff;" class=" mb-3">
-    @if(!empty($alertasEstoque) && count($alertasEstoque) > 0)
-
-        <style>
-            .alerta-estoque-piscando {
-                border: 3px solid red;
-                animation: borda-pisca 1s infinite;
-                box-shadow: 0 0 10px red;
-            }
-            @keyframes borda-pisca {
-                0% { border-color: red; }
-                50% { border-color: #fff; }
-                100% { border-color: red; }
-            }
-        </style>
-
-        <div class="alert alert-warning alerta-estoque-piscando" style="font-size:16px; border-radius: 15px;">
-            <strong class="text-danger">Atenção!</strong> Os itens abaixo estão com estoque baixo:<br>
-            <ul style="margin-bottom:0;">
-                @foreach($alertasEstoque as $alerta)
-                    <li>
-                        <b>{{ $alerta['tipo'] }}:</b> {{ $alerta['nome'] }} - <span style="color:red;">{{ $alerta['estoque'] }}</span> unidades
-                    </li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
 
     <div class="container-fluid mt-2 box-dashboard">
         <div class="row g-4">
-            <div class="col-md-3">
+            <div class="col-md-3 mb-2">
                 <div class="card-metric bg-purple">
                     <h4>{{ $totalVendasHoje }} VENDAS HOJE</h4>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 mb-2">
                 <div class="card-metric bg-blue">
                     <h4>R$ {{ number_format($faturamentoMesAtual, 2, ',', '.') }} FATURAMENTO MÊS</h4>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 mb-2">
                 <div class="card-metric bg-orange">
                     <h4>R$ {{ number_format($despesaMesAtual, 2, ',', '.') }} DESPESA MÊS</h4>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 mb-2">
                 <div class="card-metric bg-orange">
                     <h4>R$ {{ number_format($lucroMesAtual, 2, ',', '.') }} LUCRO BRUTO MÊS</h4>
                 </div>
             </div>
-            {{-- <div class="col-md-3">
+            {{-- <div class="col-md-3 mb-2">
                 <div class="card-metric bg-orange">
                     <h4>{{ strtoupper($produtoMaisVendido) }} MAIS VENDIDO</h4>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 mb-2">
                 <div class="card-metric bg-orange">
                     <h4>{{ strtoupper($produtoMaisVendido) }} MAIS VENDIDO</h4>
                 </div>
@@ -150,82 +121,73 @@
         const estoqueQtd = @json($estoqueDistribuicao->pluck('estoque_inicial'));
 
         // Linha - Faturamento diário
-        const elLinha = document.querySelector("#graficoLinha");
-        if (elLinha) {
-            new ApexCharts(elLinha, {
-                chart: {
-                    type: 'line'
+        new ApexCharts(document.querySelector("#graficoLinha"), {
+            chart: {
+                type: 'line'
+            },
+            series: [{
+                name: 'R$',
+                data: totais
+            }],
+            xaxis: {
+                categories: dias
+            },
+            stroke: {
+                curve: 'smooth'
+            },
+            colors: ['#00dfd8'],
+            tooltip: {
+                style: {
+                    fontSize: '14px',
+                    fontFamily: 'Arial, sans-serif',
+                    colors: ['#ffffff'] // cor do texto do tooltip
                 },
-                series: [{
-                    name: 'R$',
-                    data: totais
-                }],
-                xaxis: {
-                    categories: dias
-                },
-                stroke: {
-                    curve: 'smooth'
-                },
-                colors: ['#00dfd8'],
-                tooltip: {
-                    style: {
-                        fontSize: '14px',
-                        fontFamily: 'Arial, sans-serif',
-                        colors: ['#ffffff'] // cor do texto do tooltip
-                    },
-                    theme: 'dark' // 'light' ou 'dark'
-                }
-            }).render();
-        }
+                theme: 'dark' // 'light' ou 'dark'
+            }
+        }).render();
 
         // Barra - Vendas por categoria
-        const elBarra = document.querySelector("#graficoBarra");
-        if (elBarra) {
-            new ApexCharts(elBarra, {
-                chart: {
-                    type: 'bar'
+        new ApexCharts(document.querySelector("#graficoBarra"), {
+            chart: {
+                type: 'bar'
+            },
+            series: [{
+                name: 'Vendas',
+                data: totalPorCategoria
+            }],
+            xaxis: {
+                categories: categorias
+            },
+            colors: ['#f7971e'],
+            tooltip: {
+                style: {
+                    fontSize: '14px',
+                    fontFamily: 'Arial, sans-serif',
+                    colors: ['#ffffff'] // cor do texto do tooltip
                 },
-                series: [{
-                    name: 'Vendas',
-                    data: totalPorCategoria
-                }],
-                xaxis: {
-                    categories: categorias
-                },
-                colors: ['#f7971e'],
-                tooltip: {
-                    style: {
-                        fontSize: '14px',
-                        fontFamily: 'Arial, sans-serif',
-                        colors: ['#ffffff'] // cor do texto do tooltip
-                    },
-                    theme: 'dark' // 'light' ou 'dark'
-                }
-            }).render();
-        }
+                theme: 'dark' // 'light' ou 'dark'
+            }
+        }).render();
 
         // Donut - Estoque
-        const elDonut = document.querySelector("#graficoDonut");
-        if (elDonut) {
-            new ApexCharts(elDonut, {
-                chart: {
-                    type: 'donut'
-                },
-                labels: produtosEstoque,
-                series: estoqueQtd,
-                colors: ['#4a00e0', '#00dfd8', '#f7971e', '#8e2de2'],
-                responsive: [{
-                    breakpoint: 480,
-                    options: {
-                        chart: {
-                            width: 300
-                        },
-                        legend: {
-                            position: 'bottom'
-                        }
+        new ApexCharts(document.querySelector("#graficoDonut"), {
+            chart: {
+                type: 'donut'
+            },
+            labels: produtosEstoque,
+            series: estoqueQtd,
+            colors: ['#4a00e0', '#00dfd8', '#f7971e', '#8e2de2'],
+            responsive: [{
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: 300
+                    },
+                    legend: {
+                        position: 'bottom'
                     }
-                }]
-            }).render();
-        }
+                }
+            }]
+        }).render();
     </script>
 @endsection

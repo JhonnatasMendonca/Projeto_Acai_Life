@@ -2,7 +2,7 @@
 @section('title', 'Açai Life - Login')
 @section('content')
     <div class="div_canter">
-        <img src="{{ asset('images/acai-life.png') }}" alt="Açai Life Logo" class="img-fluid mx-auto d-block mt-5 mb-3" style="max-width: 200px;">
+        <img src="{{ asset('images/favicon.png') }}" alt="Açai Life Logo" class="img-fluid mx-auto d-block mt-5 mb-3" style="max-width: 200px;">
         <div style="width: 400px;" class="container mt-2 mb-5">
             <div class="position_center_row">
                 <div class="line"></div>

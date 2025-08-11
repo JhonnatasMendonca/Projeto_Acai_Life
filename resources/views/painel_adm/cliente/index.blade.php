@@ -3,16 +3,16 @@
 @section('content')
 
     <h2 class="mt-4 mb-2">
-        <i class="bi bi-person"></i> Cadastro de Clientes
+        <i class="bi bi-person cad-add"></i> Cadastro de Clientes
     </h2>
     <hr style="border: 1px solid #fff;" class=" mb-3">
-    <div class="" style="display: flex; justify-content: space-between; align-items: center;">
+    <div class="box-buttons" style="display: flex; justify-content: space-between; align-items: center; ">
         <div class="col-md-6 p-0" style="">
-            <input type="search" class="form-control " placeholder="Pesquisar na tabela" id="searchInput" style="">
+            <input type="search" class="form-control btn-search" placeholder="Pesquisar na tabela" id="searchInput" style="">
         </div>
-        <div class="" style="display: flex;  align-items: center;gap: 10px;">
-            <button class="btn  pesquisa" id="addClienteButton" style="width: 100%;" data-toggle="modal"
-                data-target="#modalCadastrarCliente">
+        <div class="" style="display: flex;  align-items: center; gap: 10px;">
+            <button class="btn pesquisa btn-cadastrar-cliente" id="addClienteButton" style="width: 100%;" data-toggle="modal"
+                data-target="#modalCadastrarCliente" style="">
                 <i class="bi bi-person-add"></i> Cadastrar Cliente
             </button>
 

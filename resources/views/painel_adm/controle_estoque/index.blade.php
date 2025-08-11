@@ -7,21 +7,21 @@
     </h2>
     <hr style="border: 1px solid #fff;" class=" mb-3">
     <div class="" style="display: flex; justify-content: space-between; align-items: center;">
-        <div class="col-md-6 p-0" style="">
+        <div class="col-md-6 p-0 search-test" style="">
             <input type="search" class="form-control " placeholder="Pesquisar na tabela" id="searchInput" style="">
         </div>
         <div class="" style="display: flex;  align-items: center;gap: 10px;">
-            <button class="btn  pesquisa" id="addProductButton" style="width: 100%;" data-toggle="modal"
-                data-target="#modalCadastrarProduto">
-                <i class="bi bi-box"></i> Cadastrar Produto
+            <button class="btn pesquisa teste1" id="addProductButton" style="width: 100%;" data-toggle="modal"
+                data-target="#modalCadastrarProduto" style="color: #592f6c">
+                <i class="bi bi-box test-salvar"></i> Cadastrar Produto
             </button>
 
-            <button class="btn pesquisa" id="addInsumoButton" style="width: 100%; gap: 10px;" data-toggle="modal"
+            <button class="btn pesquisa teste1" id="addInsumoButton" style="width: 100%; gap: 10px;" data-toggle="modal"
                 data-target="#modalCadastrarInsumo">
                 <i class="bi bi-tags"></i> Cadastrar Insumo
             </button>
 
-            <button class="btn pesquisa" id="addCompraButton" style="width: 100%; background-color: #051D40;gap: 10px;"
+            <button class="btn pesquisa teste1" id="addCompraButton" style="width: 100%; background-color: #051D40;gap: 10px;"
                 data-toggle="modal" data-target="#modalRegistrarCompra" onmouseover="this.style.backgroundColor='#0a2b5c';"
                 onmouseout="this.style.backgroundColor='#051D40';">
                 <i class="bi bi-cart"></i> Registrar Compra
