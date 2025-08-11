@@ -60,7 +60,8 @@
     <script src="{{ asset('js/select2.min.js') }}"></script>
     <script src="{{ asset('js/ag-grid-community.min.noStyle.js') }}"></script>
     <script src="{{ asset('js/apexcharts.js') }}"></script>
-    {{-- <script src="{{ asset('js/ag-grid-community.min.js') }}"></script> --}}
+    <script src="{{ asset('js/jspdf.umd.min.js') }}"></script>
+    <script src="{{ asset('js/html2canvas.min.js') }}"></script>
     
     
 

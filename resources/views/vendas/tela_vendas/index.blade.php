@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('title', 'Açai Life - Checkout de Vendas')
 @section('content')
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script> --}}
     <style>
         .comprovante {
             width: 300px;
@@ -237,7 +239,23 @@
         </div>
 @endsection
 
-<script type="module">
+    <script type="module">
+    // Função global para salvar comprovante em PDF 58mm
+    window.salvarComprovantePDF = function() {
+        const comprovante = document.querySelector('.comprovante');
+        if (!comprovante) return;
+        html2canvas(comprovante, {scale:2}).then(function(canvas) {
+            const imgData = canvas.toDataURL('image/png');
+            // 58mm = ~164px em 72dpi, mas jsPDF usa mm, então:
+            const pdf = new window.jspdf.jsPDF({
+                orientation: 'p',
+                unit: 'mm',
+                format: [58, canvas.height * 58 / canvas.width]
+            });
+            pdf.addImage(imgData, 'PNG', 0, 0, 58, (canvas.height * 58 / canvas.width));
+            pdf.save('comprovante.pdf');
+        });
+    }
     function atualizarResumo() {
         let subtotal = 0;
         let comprovanteBody = $('.comprovante .produtos tbody');
@@ -313,6 +331,55 @@
         atualizarResumo();
     });
 
+    // Toast Bootstrap
+    // Utiliza toastr já existente no app
+    function showToast(message, type = 'success') {
+        if (type === 'success') {
+            toastr.success(message);
+        } else {
+            toastr.error(message);
+        }
+    }
+
+    // Envio do formulário via AJAX
+    $('#formVenda').on('submit', function(e) {
+        e.preventDefault();
+        let form = $(this);
+        $.ajax({
+            url: form.attr('action'),
+            method: form.attr('method'),
+            data: form.serialize(),
+            success: function(response) {
+                if (response.success) {
+                    showToast(response.mensagem, 'success');
+                    $('.box_comprovante').css('visibility', 'visible');
+                    $('.overlay').fadeIn(200);
+                    if (response.imprimir) {
+                        setTimeout(function() {
+                            window.salvarComprovantePDF();
+                            setTimeout(function() {
+                                location.reload();
+                            }, 1000);
+                        }, 500);
+                    } else {
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1000);
+                    }
+                } else {
+                    showToast(response.mensagem || 'Erro ao registrar venda!', 'danger');
+                }
+            },
+            error: function(xhr) {
+                let msg = 'Erro ao registrar venda!';
+                if (xhr.responseJSON && xhr.responseJSON.mensagem) {
+                    msg = xhr.responseJSON.mensagem;
+                }
+                showToast(msg, 'danger');
+            }
+        });
+    });
+
     $('#verRegistrosButton').on('click', function() {
         window.location.href = "{{ route('registroVendas') }}";
     });
@@ -320,6 +387,17 @@
     $('#registroButton').on('click', function() {
         $('.box_comprovante').css('visibility', 'visible');
         $('.overlay').fadeIn(200);
+        // // Só imprime se status for pago
+        // const status = $('select[name="status"]').val();
+        // if (status === 'pago') {
+        //     setTimeout(function(){
+        //         window.salvarComprovantePDF();
+        //     }, 500); // aguarda renderização
+        // }
+    });
+
+    $('#addCompraButton').on('click', function(e) {
+        // Removido: agora o envio é via AJAX no submit do formulário
     });
 
     $('#voltarButton').on('click', function() {

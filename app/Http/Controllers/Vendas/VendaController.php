@@ -192,11 +192,24 @@ class VendaController
 
             if ($data['status'] === 'pago') {
                 $this->registrarEntradaCaixa($total, 'Venda ID: ' . $venda->id, $data['usuario_id']);
+                DB::commit();
+                return response()->json([
+                    'success' => true,
+                    'imprimir' => true,
+                    'mensagem' => 'Venda registrada com sucesso!',
+                    'venda' => $venda->load(['usuario', 'itens.produto'])
+                ]);
+            } else {
+                DB::commit();
+                return response()->json([
+                    'success' => true,
+                    'imprimir' => false,
+                    'mensagem' => 'Venda registrada com sucesso!',
+                    'venda' => $venda->load(['usuario', 'itens.produto'])
+                ]);
             }
 
-            DB::commit();
-
-            return redirect()->back()->with('mensagem', 'Venda registrada com sucesso!');
+            // return redirect()->back()->with('mensagem', 'Venda registrada com sucesso!');
         } catch (\Exception $e) {
             DB::rollBack();
             Log::error('Erro ao registrar venda', [
@@ -205,7 +218,8 @@ class VendaController
                 'produtos' => isset($data['produtos']) ? $data['produtos'] : null,
                 'explicacao' => 'Erro ao registrar venda: geralmente ocorre quando o estoque do produto ou insumo é insuficiente para a quantidade vendida. Verifique se o estoque_inicial do produto ou estoque_insumo/peso_total do insumo é suficiente para o cálculo da venda.'
             ]);
-            return redirect()->back()->with('erro', 'Erro ao registrar a venda: ' . $e->getMessage());
+            // return redirect()->back()->with('erro', 'Erro ao registrar a venda: ' . $e->getMessage());
+            return response()->json(['success' => false, 'imprimir' => false, 'mensagem' => 'Erro ao registrar a venda: ' . $e->getMessage()]);
         }
     }
 
@@ -234,6 +248,7 @@ class VendaController
                 }
             }
 
+            $imprimir = false;
             if ($data['status'] === 'pago' && $venda->status !== 'pago') {
                 // Se estava pendente e foi paga, abate estoque e registra no caixa
                 foreach ($venda->itens as $item) {
@@ -333,6 +348,7 @@ class VendaController
                     }
                 }
                 $this->registrarEntradaCaixa($venda->total, 'Venda ID: ' . $venda->id, $venda->usuario_id);
+                $imprimir = true;
             }
 
             // Atualiza o status da venda
@@ -342,7 +358,12 @@ class VendaController
 
             DB::commit();
 
-            return redirect()->back()->with('mensagem', 'Status da venda atualizado com sucesso.');
+            return response()->json([
+                'success' => true,
+                'imprimir' => $imprimir,
+                'mensagem' => 'Status da venda atualizado com sucesso.',
+                'venda' => $venda->load(['usuario', 'itens.produto'])
+            ]);
         } catch (\Exception $e) {
             DB::rollBack();
             Log::error('Erro ao atualizar status da venda', [
@@ -352,7 +373,10 @@ class VendaController
                 'produtos' => isset($venda) ? $venda->itens : null,
                 'explicacao' => 'Erro ao atualizar status: geralmente ocorre quando o estoque do produto ou insumo é insuficiente para a quantidade vendida. Verifique se o estoque_inicial do produto ou estoque_insumo/peso_total do insumo é suficiente para o cálculo da venda.'
             ]);
-            return redirect()->back()->with('erro', 'Erro ao atualizar o status da venda: ' . $e->getMessage());
+            return response()->json([
+                'success' => false,
+                'mensagem' => 'Erro ao atualizar o status da venda: ' . $e->getMessage()
+            ], 400);
         }
     }
 

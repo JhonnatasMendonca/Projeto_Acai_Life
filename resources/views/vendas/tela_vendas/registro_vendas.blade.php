@@ -2,6 +2,37 @@
 @section('title', 'Açai Life - Registros de vendas')
 @section('content')
 
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script> --}}
+
+    <!-- Div oculta para comprovante PDF -->
+    <div id="comprovanteContainer" style="display:none;">
+        <div class="comprovante"
+            style="width:300px;margin:0 auto;background:#FAFAD2;border:1px solid #ccc;padding:10px;color:#000;">
+            <div class="logo" style="text-align:center;">
+                <img id="comprovanteLogo" src="{{ asset('images/acai_nova_log.png') }}" alt="Açaí Life Logo"
+                    style="width:50px;">
+            </div>
+            <div class="title" style="font-weight:bold;text-align:center;margin-top:5px;">Açaí Life</div>
+            <div class="info" style="text-align:center;">R. João Alves Berenguer, 63 - Monjope, Igarassu - PE</div>
+            <div class="info" id="comprovanteInfo"></div>
+            <table class="produtos" style="width:100%;font-size:12px;border-collapse:collapse;">
+                <thead>
+                    <tr>
+                        <th>Qtd</th>
+                        <th>Produto</th>
+                        <th>Vlr</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody id="comprovanteProdutos"></tbody>
+            </table>
+            <div class="total" id="comprovanteTotal" style="margin-top:10px;font-size:13px;"></div>
+            <div class="agradecimento" style="text-align:center;margin-top:10px;font-size:12px;">Obrigado por escolher
+                <strong>Açaí Life!</strong></div>
+        </div>
+    </div>
+
     <h2 class="mt-4 mb-2">
         <i class="bi-card-list"></i> Registros de Vendas
     </h2>
@@ -46,8 +77,7 @@
         }
 
         var gridOptions = {
-            columnDefs: [
-                {
+            columnDefs: [{
                     headerName: 'Pedido',
                     field: 'id',
                     maxWidth: 100,
@@ -114,7 +144,7 @@
                     },
                     minWidth: 180
                 },
-                
+
                 {
                     headerName: 'Subtotal',
                     field: 'subtotal',
@@ -171,7 +201,8 @@
                                         <i class="bi bi-x-circle"></i> Cancelar
                                     </button>
                                 </form>
-                            `;S
+                            `;
+                            S
                         } else {
                             return `<span class="text-muted">Sem ações</span>`;
                         }
@@ -196,6 +227,97 @@
         };
 
         atualizaDados();
+
+        // Função global para salvar comprovante em PDF 58mm
+        window.salvarComprovantePDF = function() {
+            const comprovante = document.querySelector('.comprovante');
+            if (!comprovante) return;
+            html2canvas(comprovante, {
+                scale: 2
+            }).then(function(canvas) {
+                const imgData = canvas.toDataURL('image/png');
+                // 58mm = ~164px em 72dpi, mas jsPDF usa mm, então:
+                const pdf = new window.jspdf.jsPDF({
+                    orientation: 'p',
+                    unit: 'mm',
+                    format: [58, canvas.height * 58 / canvas.width]
+                });
+                pdf.addImage(imgData, 'PNG', 0, 0, 58, (canvas.height * 58 / canvas.width));
+                pdf.save('comprovante.pdf');
+            });
+        }
+
+        // Função para preencher comprovante
+        function preencherComprovante(venda) {
+            // Info principal
+            $('#comprovanteInfo').html(
+                `Data: ${venda.created_at ? new Date(venda.created_at).toLocaleDateString('pt-BR') : ''}<br>` +
+                `Pedido: ${venda.id}<br>` +
+                `Atendente: ${venda.usuario?.nome_usuario || '-'}<br>`
+            );
+            // Produtos
+            let produtosHtml = '';
+            if (venda.itens && venda.itens.length) {
+                venda.itens.forEach(function(item) {
+                    produtosHtml += `<tr>
+                        <td>${item.quantidade}</td>
+                        <td>${item.produto?.nome_produto || '-'}</td>
+                        <td>${parseFloat(item.preco_unitario).toFixed(2)}</td>
+                        <td>${parseFloat(item.total_item).toFixed(2)}</td>
+                    </tr>`;
+                });
+            }
+            $('#comprovanteProdutos').html(produtosHtml);
+            // Totais
+            $('#comprovanteTotal').html(
+                `Subtotal: R$ ${parseFloat(venda.subtotal).toFixed(2)}<br>` +
+                `Desconto: R$ ${parseFloat(venda.desconto).toFixed(2)}<br>` +
+                `<strong>Forma de pagamento:</strong> ${venda.forma_pagamento || '-'}<br>` +
+                `<strong>Total:</strong> R$ ${parseFloat(venda.total).toFixed(2)}`
+            );
+        }
+
+        // Lógica de imprimir comprovante ao aprovar venda
+        $(document).on('submit', 'form[action*="atualizar-status"]', function(e) {
+            e.preventDefault();
+            var form = $(this);
+            $.ajax({
+                url: form.attr('action'),
+                method: form.attr('method'),
+                data: form.serialize(),
+                success: function(response) {
+                    if (response.success) {
+                        toastr.success(response.mensagem);
+                        if (response.imprimir && response.venda) {
+                            preencherComprovante(response.venda);
+                            $('#comprovanteContainer').show();
+                            setTimeout(function() {
+                                if (window.salvarComprovantePDF) {
+                                    window.salvarComprovantePDF();
+                                }
+                                setTimeout(function() {
+                                    $('#comprovanteContainer').hide();
+                                    location.reload();
+                                }, 1000);
+                            }, 500);
+                        } else {
+                            setTimeout(function() {
+                                location.reload();
+                            }, 1000);
+                        }
+                    } else {
+                        toastr.error(response.mensagem || 'Erro ao atualizar status!');
+                    }
+                },
+                error: function(xhr) {
+                    let msg = 'Erro ao atualizar status!';
+                    if (xhr.responseJSON && xhr.responseJSON.mensagem) {
+                        msg = xhr.responseJSON.mensagem;
+                    }
+                    toastr.error(msg);
+                }
+            });
+        });
 
         var searchInput = document.getElementById('searchInput');
         searchInput.addEventListener('input', function() {
