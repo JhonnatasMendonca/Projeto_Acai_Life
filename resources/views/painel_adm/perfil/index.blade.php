@@ -6,12 +6,13 @@
         <i class="bi bi-person-gear"></i> Atribuição de Perfil
     </h2>
     <hr style="border: 1px solid #fff;" class=" mb-3">
-    <div class="" style="display: flex; justify-content: space-between; align-items: center;">
+    <div class="box-inputs container-fluid  row">
         <div class="col-md-6 p-0" style="">
-            <input type="search" class="form-control " placeholder="Pesquisar na tabela" id="searchInput" style="">
+            <input type="search" class="form-control mt-2" placeholder="Pesquisar na tabela" id="searchInput" style="">
         </div>
-        <div class="" style="display: flex;  align-items: center;gap: 10px;">
-            <button class="btn  pesquisa" id="addClienteButton" style="width: 100%;" data-toggle="modal"
+        <div class="box-buttons-modals container-fluid  col-md-6 d-flex justify-content-between align-items-center" >
+            <div></div>
+            <button class="button-modal col-md-4 mt-2 btn pesquisa" id="addClienteButton" style="width: 100%;" data-toggle="modal"
                 data-target="#modalCadastrarPerfil">
                 <i class="bi bi-person-plus"></i> Cadastrar Perfil
             </button>
@@ -19,7 +20,6 @@
         </div>
 
     </div>
-    {{-- {{ dd($permissoes) }} --}}
 
     <div id="myGrid" style="height: 60vh;" class="ag-theme-alpine mt-4"></div>
 

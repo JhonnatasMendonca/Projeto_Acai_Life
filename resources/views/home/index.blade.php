@@ -33,6 +33,7 @@
             border-radius: 12px;
             padding: 20px;
             color: white;
+            margin-bottom: 10% !important;
         }
 
         .box-dashboard {
@@ -52,7 +53,8 @@
     </style>
 
     <h2 class="mt-4 mb-2">
-        <i class="bi-bar-chart"></i> Dashboard - Controle de Estoque e Vendas
+        {{-- <i class="bi-bar-chart"></i> Dashboard - Controle de Estoque e Vendas --}}
+        <i class="bi-bar-chart"></i> Dashboard
     </h2>
     <hr style="border: 1px solid #fff;" class=" mb-3">
 

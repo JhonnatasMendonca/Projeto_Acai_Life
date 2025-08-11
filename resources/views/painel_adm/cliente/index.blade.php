@@ -6,12 +6,13 @@
         <i class="bi bi-person cad-add"></i> Cadastro de Clientes
     </h2>
     <hr style="border: 1px solid #fff;" class=" mb-3">
-    <div class="box-buttons" style="display: flex; justify-content: space-between; align-items: center; ">
+    <div class="box-inputs container-fluid  row">
         <div class="col-md-6 p-0" style="">
-            <input type="search" class="form-control btn-search" placeholder="Pesquisar na tabela" id="searchInput" style="">
+            <input type="search" class="form-control btn-search mt-2" placeholder="Pesquisar na tabela" id="searchInput" style="">
         </div>
-        <div class="" style="display: flex;  align-items: center; gap: 10px;">
-            <button class="btn pesquisa btn-cadastrar-cliente" id="addClienteButton" style="width: 100%;" data-toggle="modal"
+        <div class="box-buttons-modals container-fluid  col-md-6 d-flex justify-content-between align-items-center" >
+            <div></div>
+            <button class="button-modal col-md-4 mt-2 btn pesquisa btn-cadastrar-cliente" id="addClienteButton" style="width: 100%;" data-toggle="modal"
                 data-target="#modalCadastrarCliente" style="">
                 <i class="bi bi-person-add"></i> Cadastrar Cliente
             </button>
