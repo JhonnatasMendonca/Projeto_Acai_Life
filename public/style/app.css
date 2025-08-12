@@ -11,7 +11,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(to right, #2d6b32 40%, #cacccf);
+    /* background: linear-gradient(to right, #2d6b32 40%, #cacccf); */
 }
 
 .fundo_color{
@@ -295,7 +295,7 @@ input:focus {
     .div_canter {
         flex-direction: column;
         height: auto;
-        padding: 20px 10px;
+        padding: 20px 10px;login-t
     }
 
     nav {
@@ -458,5 +458,13 @@ input:focus {
         padding: 0 !important;
         margin-left: 0 !important;
         margin-right: 0 !important;
+    }
+    .background_sucess {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+    .login-t {
+        width: 98% !important;
+        margin: 0 auto !important;
     }
 }
