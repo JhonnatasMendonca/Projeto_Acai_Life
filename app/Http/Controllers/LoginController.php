@@ -25,7 +25,9 @@ class LoginController extends Controller
                 'senha_usuario' => 'required|string',
             ]);
 
-            $usuario = Usuario::where('login_usuario', $request->login_usuario)->first();
+            $usuario = Usuario::where('login_usuario', $request->login_usuario)
+                ->with('perfil.permissoes')
+                ->first();
 
             if (!$usuario || !Hash::check($request->senha_usuario, $usuario->senha_usuario)) {
                 // Log::warning('Falha no login', ['login_usuario' => $request->login_usuario]);
@@ -40,7 +42,12 @@ class LoginController extends Controller
             // Se autenticar com o Auth manualmente, exemplo:
             Auth::login($usuario);
 
-            return redirect()->route('home')->with('mensagem', 'Bem-vindo(a) '. $usuario->nome_usuario . '!');
+            // Verifica se o perfil do usuário é 'Atendente'
+            if ($usuario->perfil && $usuario->perfil->nome === 'Atendente') {
+                return redirect()->route('vendas.index')->with('mensagem', 'Bem-vindo(a) ' . $usuario->nome_usuario . '!');
+            }
+
+            return redirect()->route('home')->with('mensagem', 'Bem-vindo(a) ' . $usuario->nome_usuario . '!');
         } catch (\Exception $e) {
             Log::error('Erro ao tentar login', [
                 'login_usuario' => $request->login_usuario ?? null,

@@ -10,45 +10,71 @@
     <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarNavDropdown" style="display: fkex; justify-content:space-between;">
             <ul class="navbar-nav">
-                <li class="nav-item {{ request()->routeIs('home') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('home') }}">Inicio<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item dropdown {{ request()->routeIs(['controleEstoque', 'clientes.index', 'usuarios.index', 'perfis.index', 'permissoes.index']) ? 'active' : '' }}">
+                @can('visualizar inicio')
+                    <li class="nav-item {{ request()->routeIs('home') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('home') }}">Inicio<span class="sr-only">(current)</span></a>
+                    </li>
+                @endcan
+                @can(['visualizar painel administrativo','visualizar tela controle de estoque', 'visualizar tela cadastro de clientes', 'visualizar tela cadastro de usuarios', 'visualizar tela atribuição de perfil', 'visualizar tela cadastro de permissoes'])
+                    <li class="nav-item dropdown {{ request()->routeIs(['controleEstoque', 'clientes.index', 'usuarios.index', 'perfis.index', 'permissoes.index']) ? 'active' : '' }}">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Painel administrativo
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="{{ route('controleEstoque') }}">Controle de estoque</a>
-                        <a class="dropdown-item" href="{{ route('clientes.index') }}">Cadastro de clientes</a>
-                        <a class="dropdown-item" href="{{ route('usuarios.index') }}">Cadastro de usuários</a>
-                        <a class="dropdown-item" href="{{ route('perfis.index') }}">Atribuição de perfil</a>
-                        <a class="dropdown-item" href="{{ route('permissoes.index') }}">Cadastro de permissões</a>
+                        @can('visualizar tela controle de estoque')
+                            <a class="dropdown-item" href="{{ route('controleEstoque') }}">Controle de estoque</a>
+                        @endcan
+                        @can('visualizar tela cadastro de clientes')
+                            <a class="dropdown-item" href="{{ route('clientes.index') }}">Cadastro de clientes</a>
+                        @endcan
+                        @can('visualizar tela cadastro de usuarios')
+                            <a class="dropdown-item" href="{{ route('usuarios.index') }}">Cadastro de usuários</a>
+                        @endcan
+                        @can('visualizar tela atribuição de perfil')
+                            <a class="dropdown-item" href="{{ route('perfis.index') }}">Atribuição de perfil</a>
+                        @endcan
+                        @can('visualizar tela cadastro de permissoes')
+                            <a class="dropdown-item" href="{{ route('permissoes.index') }}">Cadastro de permissões</a>
+                        @endcan
                     </div>
                 </li>
-                <li class="nav-item dropdown {{ request()->routeIs(['caixas.index', 'despesas.index', 'compras.index']) ? 'active' : '' }}">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                @endcan
+                @can(['visualizar controle financeiro', 'visualizar tela fluxo de caixa', 'visualizar tela controle de despesas', 'visualizar tela registro de compras'])
+                    <li class="nav-item dropdown {{ request()->routeIs(['caixas.index', 'despesas.index', 'compras.index']) ? 'active' : '' }}">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Controle financeiro
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="{{ route('compras.index') }}">Registros de compras</a>
-                        <a class="dropdown-item" href="{{ route('despesas.index') }}">Controle de despesas</a>
-                        <a class="dropdown-item" href="{{ route('caixas.index') }}">Fluxo de caixa</a>
-                        {{-- <a class="dropdown-item" href="#">Batimento de caixa</a> --}}
+                        @can('visualizar tela registro de compras')
+                            <a class="dropdown-item" href="{{ route('compras.index') }}">Registros de compras</a>
+                        @endcan
+                        @can('visualizar tela controle de despesas')
+                            <a class="dropdown-item" href="{{ route('despesas.index') }}">Controle de despesas</a>
+                        @endcan
+                        @can('visualizar tela fluxo de caixa')
+                            <a class="dropdown-item" href="{{ route('caixas.index') }}">Fluxo de caixa</a>
+                        @endcan
                     </div>
                 </li>
-               <li class="nav-item dropdown {{ request()->routeIs(['vendas.index', 'registroVendas']) ? 'active' : '' }}">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                @endcan
+                @can(['visualizar checkout de vendas'])
+                    <li class="nav-item dropdown {{ request()->routeIs(['vendas.index', 'registroVendas']) ? 'active' : '' }}">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Checkout de vendas
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item"  href="{{ route('vendas.index') }}"> Iniciar venda</a>
-                        <a class="dropdown-item" href="{{ route('registroVendas') }}">Registros de vendas</a>
-                        {{-- <a class="dropdown-item" href="#">Emissão de pagamentos</a> --}}
+                        @can('visualizar tela registro de vendas')
+                            <a class="dropdown-item" href="{{ route('registroVendas') }}">Registros de vendas</a>
+                        @endcan
+                        @can('visualizar tela iniciar venda')
+                            <a class="dropdown-item"  href="{{ route('vendas.index') }}"> Iniciar venda</a>
+                        @endcan
                     </div>
                 </li>
+                @endcan
             </ul>
             <div>
                 <ul class="navbar-nav ml-auto">

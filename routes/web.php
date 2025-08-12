@@ -32,9 +32,8 @@ Route::post('/usuario/atualizar-senha', [UsuarioController::class, 'atualizarSen
  */
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
-    Route::get('/controle-estoque', [ControleEstoqueController::class, 'index'])->name('controleEstoque');
-
+    Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('can:visualizar inicio');
+    
     Route::post('/consultaDadosEstoque', [ControleEstoqueController::class, 'consultaDados'])->name('consultaDadosEstoque');
     Route::post('/consultaDadosCliente', [ClienteController::class, 'consultaDados'])->name('consultaDadosCliente');
     Route::post('/consultaDadosUsuario', [UsuarioController::class, 'consultaDados'])->name('consultaDadosUsuario');
@@ -45,16 +44,17 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/consultaDadosCompras', [RegistrarCompraController::class, 'consultaDados'])->name('consultaDadosCompras');
     Route::post('/consultaDadosVendas', [VendaController::class, 'consultaDados'])->name('consultaDadosVendas');
 
-    Route::resource('usuarios', UsuarioController::class);
-    Route::resource('insumos', InsumoController::class);
-    Route::resource('produtos', ProdutoController::class);
-    Route::resource('clientes', ClienteController::class);
-    Route::resource('perfis', PerfilController::class);
-    Route::resource('permissoes', PermissaoController::class);
-    Route::resource('compras', RegistrarCompraController::class);
-    Route::resource('caixas', CaixaController::class);
-    Route::resource('retiradaCaixa', RetiradaCaixaController::class);
-    Route::resource('despesas', DespesaController::class);
+    Route::get('/controle-estoque', [ControleEstoqueController::class, 'index'])->name('controleEstoque')->middleware('can:visualizar tela controle de estoque');
+    Route::resource('usuarios', UsuarioController::class)->middleware('can:visualizar tela cadastro de usuarios');
+    Route::resource('insumos', InsumoController::class)->middleware('can:visualizar tela controle de estoque');
+    Route::resource('produtos', ProdutoController::class)->middleware('can:visualizar tela controle de estoque');
+    Route::resource('clientes', ClienteController::class)->middleware('can:visualizar tela cadastro de clientes');
+    Route::resource('perfis', PerfilController::class)->middleware('can:visualizar tela atribuição de perfil');
+    Route::resource('permissoes', PermissaoController::class)->middleware('can:visualizar tela cadastro de permissoes');
+    Route::resource('compras', RegistrarCompraController::class)->middleware('can:visualizar tela registro de compras');
+    Route::resource('caixas', CaixaController::class)->middleware('can:visualizar tela fluxo de caixa');
+    Route::resource('retiradaCaixa', RetiradaCaixaController::class)->middleware('can:visualizar tela fluxo de caixa');
+    Route::resource('despesas', DespesaController::class)->middleware('can:visualizar tela controle de despesas');
     Route::resource('vendas', VendaController::class);
 
     Route::get('registros-de-vendas', [VendaController::class,'registrosVendas'])->name('registroVendas');

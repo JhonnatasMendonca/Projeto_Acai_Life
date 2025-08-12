@@ -46,8 +46,9 @@
         @yield('content')
     </div>
     
+    @unless (in_array(Route::currentRouteName(), ['login', 'recuperar-senha', 'logout', 'entrar', 'atualizar-senha']))
     @include('partials.footer')
-    
+    @endunless
     
     
     <!-- Scripts -->
