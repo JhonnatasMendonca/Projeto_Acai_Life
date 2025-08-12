@@ -63,25 +63,25 @@
     <hr style="border: 1px solid #fff;" class=" mb-3">
 
     <div class="container-fluid mt-2 box-dashboard">
-        <div class="row g-4">
+        <div class="row g-4 ">
             <div class="col-md-3 mb-2">
                 <div class="card-metric bg-purple">
-                    <h4>{{ $totalVendasHoje }} VENDAS HOJE</h4>
+                    <h4 class="tent">{{ $totalVendasHoje }} VENDAS HOJE</h4>
                 </div>
             </div>
             <div class="col-md-3 mb-2">
                 <div class="card-metric bg-blue">
-                    <h4>R$ {{ number_format($faturamentoMesAtual, 2, ',', '.') }} FATURAMENTO MÊS</h4>
+                    <h4 class="tent">R$ {{ number_format($faturamentoMesAtual, 2, ',', '.') }} FATURAMENTO MÊS</h4>
                 </div>
             </div>
             <div class="col-md-3 mb-2">
                 <div class="card-metric bg-red">
-                    <h4>R$ {{ number_format($despesaMesAtual, 2, ',', '.') }} DESPESA MÊS</h4>
+                    <h4 class="tent">R$ {{ number_format($despesaMesAtual, 2, ',', '.') }} DESPESA MÊS</h4>
                 </div>
             </div>
             <div class="col-md-3 mb-2">
                 <div class="card-metric bg-orange">
-                    <h4>R$ {{ number_format($lucroMesAtual, 2, ',', '.') }} LUCRO BRUTO MÊS</h4>
+                    <h4 class="tent">R$ {{ number_format($lucroMesAtual, 2, ',', '.') }} LUCRO BRUTO MÊS</h4>
                 </div>
             </div>
             {{-- <div class="col-md-3 mb-2">
@@ -100,16 +100,16 @@
         </div>
         <div class="row mt-5" style="display: flex; justify-content:space-between;">
             <div class="grafico-container col-md-4">
-                <h5 class=""><i class="bi bi-box-seam"></i> Distribuição de Estoque</h5>
+                <h5 class="tenta"><i class="bi bi-box-seam"></i> Distribuição de Estoque</h5>
                 <div id="graficoDonut"></div>
             </div>
             <div class="grafico-container col-md-4">
-                <h5 class=""><i class="bi	bi-graph-up"></i> Faturamento diário</h5>
+                <h5 class="tenta"><i class="bi	bi-graph-up"></i> Faturamento diário</h5>
                 <div id="graficoLinha"></div>
             </div>
 
             <div class="grafico-container col-md-4">
-                <h5 class=""><i class="bi bi-cash-coin"></i> Vendas por Categoria</h5>
+                <h5 class="tenta"><i class="bi bi-cash-coin"></i> Vendas por Categoria</h5>
                 <div id="graficoBarra"></div>
             </div>
         </div>

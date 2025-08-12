@@ -468,3 +468,34 @@ input:focus {
         margin: 0 auto !important;
     }
 }
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .navbar-nav {
+        font-size: 14px;
+    }
+
+    .tent {
+        font-size: 7px !important;
+    }
+
+    .tenta {
+        font-size: 23px !important;
+    }
+
+    .teste1 {
+        font-size: 8px !important;
+    }
+
+    .btn-cadastrar-cliente {
+        font-size: 8px !important;
+    }
+
+    .pesquisa {
+        font-size: 8px !important;
+    }
+
+    .permissao {
+        font-size: 7px !important;
+    }
+
+}

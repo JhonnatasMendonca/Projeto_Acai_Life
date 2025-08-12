@@ -12,7 +12,7 @@
         </div>
         <div class="box-buttons-modals container-fluid  col-md-6 d-flex justify-content-between align-items-center" >
             <div></div>
-            <button class="button-modal col-md-4 mt-2 btn pesquisa" id="addPermissaoButton" style="width: 100%;" data-toggle="modal"
+            <button class="button-modal col-md-4 mt-2 btn pesquisa permissao" id="addPermissaoButton" style="width: 100%;" data-toggle="modal"
                 data-target="#modalCadastrarPermissao">
                 <i class="bi bi-person-add"></i> Cadastrar Permissão
             </button>
