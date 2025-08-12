@@ -11,11 +11,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(to right, #2b1c8c 40%, #cacccf);
+    /* background: linear-gradient(to right, #2d6b32 40%, #cacccf); */
 }
 
 .fundo_color{
-    background: linear-gradient(to right, #2b1c8c 40%, #cacccf);
+    background: linear-gradient(to right, #2d6b32 40%, #cacccf);
     /* color: #fff; */
     font-family: "Poppins", sans-serif;
 }
@@ -25,7 +25,16 @@ nav{
 }
 
 nav ul li a{
+    color: #592f6c !important;
     font-size: 13px;
+}
+
+nav ul li a:hover{
+    color: #b04ce6 !important;
+}
+
+.active{
+    color: #f53636 !important;
 }
 
 .container {
@@ -91,7 +100,7 @@ input:focus {
 }
 
 .esquci_senha{
-    color: #051D40;
+    color: #2f2335;
     text-decoration: none;
     font-size: 12px;
 }
@@ -99,7 +108,7 @@ input:focus {
 .btn-primary-interno{
     width: 100%;
     height: 40px;
-    background-color: #051D40;
+    background-color: #2d6b32;
     color: #fff;
     border: none;
     border-radius: 10px !important;
@@ -109,13 +118,13 @@ input:focus {
 }
 
 .btn-primary-interno:hover {
-    background-color: #0a2b5c;
+    background-color: #2f2335;
 }
 
 .btn-secondary {
     width: 100%;
     height: 40px;
-    background-color: #9632D9;
+    background-color: #2d6b32;
     color: #fff;
     border: none;
     border-radius: 10px !important;
@@ -125,7 +134,7 @@ input:focus {
 }
 
 .btn-secondary:hover {
-    background-color: #b04ce6;
+    background-color: #2f2335;
 }
 
 .pesquisa{
@@ -136,7 +145,7 @@ input:focus {
     border-radius: 5px !important;
     font-size: 13px;
     /* margin-right: 1%; */
-    background-color: #9632D9;
+    background-color: #2d6b32;
 }
 
 .pesquisa:hover {
@@ -157,18 +166,18 @@ input:focus {
 }
 
 .background_sucess{
-    background-color: #2B1C8C;
+    background-color: #2d6b32;
     color: #fff;
 }
 
 .background_cancel{
-    background-color: #9632D9;
+    background-color: #2d6b32;
     color: #fff;
     margin-right: 1%;
 }
 
 .background_sucess:hover{
-    background-color: #0a2b5c;
+    background-color: #2f2335;
 }
 .background_cancel:hover{
     background-color: #b04ce6;
@@ -252,7 +261,8 @@ input:focus {
     transform: translate(-50%, -50%);
     width: 400px;
     padding: 20px;
-    background-color: rgba(128, 128, 128, 0.85);
+    /*background-color: rgba(128, 128, 128, 0.85); */
+    background-color: #9e99a2;
     border-radius: 8px;
     visibility: hidden;
 }
@@ -268,4 +278,224 @@ input:focus {
     justify-content: center;
     align-items: center;
     z-index: 999;
+}
+
+.navbar-toggler-icon {
+    background-color: #592f6c !important;
+}
+
+.pesquisa {
+    background-color: #592f6c !important;
+}
+
+
+
+@media screen and (min-width: 375px) and (max-width: 667px) {
+
+    .div_canter {
+        flex-direction: column;
+        height: auto;
+        padding: 20px 10px;login-t
+    }
+
+    nav {
+        font-size: 12px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li a {
+        font-size: 12px;
+        display: block;
+        padding: 8px 0;
+    }
+
+    .container {
+        width: 95%;
+        padding: 5%;
+    }
+
+    .position_center_row {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    h5 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    input[type="button"],
+    .btn-primary-interno,
+    .btn-secondary,
+    .pesquisa {
+        width: 100%;
+        font-size: 14px;
+        height: 36px;
+    }
+
+    .center_buttons {
+        margin-left: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .center_buttons button {
+        width: 100% !important;
+        margin-top: 10px;
+    }
+
+    .box_comprovante {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .formModal label, 
+    .formModal input, 
+    .formModal select,
+    .formVenda label, 
+    .formVenda input, 
+    .formVenda select {
+        font-size: 12px !important;
+    }
+
+    .ag-paging-panel {
+        font-size: 9px !important;
+    }
+
+    #toast-container > div {
+        min-width: unset;
+        width: 90%;
+        font-size: 12px;
+    }
+
+    /* .search-test button {
+    display: flex !important;
+    gap: 10px  !important;
+    flex-wrap: wrap !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    }
+
+    .teste1 button{
+        height: 40px !important;
+        background-color: #592f6c !important;
+        color: #fff !important;
+        display: flex !important;
+        gap: 10px  !important;
+        width: 100% !important;
+    } */
+
+    /* .search-test button{
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 10px !important;
+        width: 100% !important;
+    }
+
+    .teste1 button{
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 10px !important;
+        width: 100% !important;
+    } */
+
+    /* .search-test,
+    .teste1 {
+        gap: 10px !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+    }
+
+    .search-test > *,
+    .teste1 > * {
+        flex: 1 1 (50% - 10px) !important; /* Ajusta o tamanho para ocupar 50% menos o gap */
+        /* max-width: calc(50% - 10px) !important; 
+    } */
+
+
+    /* .box-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        
+    }
+
+    .btn-cadastrar-cliente {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+
+    .btn-search {
+        width: 100%;
+    } */
+
+    h2{
+        font-size: 22px;
+        text-align: center;
+    }
+
+    #ag-30{
+        font-size: 4px !important;
+    }
+
+    .box-buttons-modals {
+        gap: 10px !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        padding: 0 !important;
+    }
+    .box-inputs{
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    .button-modal{
+        padding: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    .background_sucess {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+    .login-t {
+        width: 98% !important;
+        margin: 0 auto !important;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .navbar-nav {
+        font-size: 14px;
+    }
+
+    .tent {
+        font-size: 7px !important;
+    }
+
+    .tenta {
+        font-size: 23px !important;
+    }
+
+    .teste1 {
+        font-size: 8px !important;
+    }
+
+    .btn-cadastrar-cliente {
+        font-size: 8px !important;
+    }
+
+    .pesquisa {
+        font-size: 8px !important;
+    }
+
+    .permissao {
+        font-size: 7px !important;
+    }
+
 }

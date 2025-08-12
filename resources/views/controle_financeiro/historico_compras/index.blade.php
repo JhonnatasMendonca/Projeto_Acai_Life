@@ -6,12 +6,13 @@
         <i class="bi bi-cart"></i> Registros de Compras
     </h2>
     <hr style="border: 1px solid #fff;" class=" mb-3">
-    <div class="" style="display: flex; justify-content: space-between; align-items: center;">
+    <div class="box-inputs container-fluid  row">
         <div class="col-md-6 p-0" style="">
-            <input type="search" class="form-control " placeholder="Pesquisar na tabela" id="searchInput" style="">
+            <input type="search" class="form-control mt-2" placeholder="Pesquisar na tabela" id="searchInput" style="">
         </div>
-        <div class="" style="display: flex;  align-items: center;gap: 10px;">
-            <button class="btn pesquisa" id="addCompraButton" style="width: 100%; background-color: #051D40;gap: 10px;"
+        <div class="box-buttons-modals container-fluid  col-md-6 d-flex justify-content-between align-items-center" >
+            <div></div>
+            <button class="button-modal col-md-4 mt-2 btn pesquisa" id="addCompraButton" style="width: 100%; background-color: #051D40;gap: 10px;"
                 data-toggle="modal" data-target="#modalRegistrarCompra" onmouseover="this.style.backgroundColor='#0a2b5c';"
                 onmouseout="this.style.backgroundColor='#051D40';">
                 <i class="bi bi-cart"></i> Registrar Compra
@@ -81,12 +82,12 @@
 
         var gridOptions = {
             columnDefs: [
-                { headerName: 'Id', field: 'id', maxWidth: 80 },
-                { headerName: 'Fornecedor', field: 'nome_fornecedor', minWidth: 80 },
+                { headerName: 'Id', field: 'id', minWidth: 80 },
+                { headerName: 'Fornecedor', field: 'nome_fornecedor', minWidth: 130 },
                 { 
                     headerName: 'Data da compra', 
                     field: 'data_compra', 
-                    minWidth: 110,
+                    minWidth: 170,
                     valueFormatter: params => {
                         if (!params.value) return '';
                         const date = new Date(params.value);
@@ -94,7 +95,7 @@
                         return date.toLocaleDateString('pt-BR');
                     }
                 },
-                { headerName: 'Valor total', field: 'valor_total', minWidth: 200 },
+                { headerName: 'Valor total', field: 'valor_total', minWidth: 130 },
                 { headerName: 'Forma de pagamento', field: 'forma_pagamento', minWidth: 200 },
                 // {
                 //     headerName: 'Ações',

@@ -6,12 +6,13 @@
         <i class="bi bi-person-lock"></i> Cadastro de Permissões
     </h2>
     <hr style="border: 1px solid #fff;" class=" mb-3">
-    <div class="" style="display: flex; justify-content: space-between; align-items: center;">
+    <div class="box-inputs container-fluid  row">
         <div class="col-md-6 p-0" style="">
-            <input type="search" class="form-control " placeholder="Pesquisar na tabela" id="searchInput" style="">
+            <input type="search" class="form-control mt-2" placeholder="Pesquisar na tabela" id="searchInput" style="">
         </div>
-        <div class="" style="display: flex;  align-items: center;gap: 10px;">
-            <button class="btn  pesquisa" id="addPermissaoButton" style="width: 100%;" data-toggle="modal"
+        <div class="box-buttons-modals container-fluid  col-md-6 d-flex justify-content-between align-items-center" >
+            <div></div>
+            <button class="button-modal col-md-4 mt-2 btn pesquisa permissao" id="addPermissaoButton" style="width: 100%;" data-toggle="modal"
                 data-target="#modalCadastrarPermissao">
                 <i class="bi bi-person-add"></i> Cadastrar Permissão
             </button>
@@ -78,9 +79,9 @@
 
         var gridOptions = {
             columnDefs: [
-                { headerName: 'Id', field: 'id', maxWidth: 80 },
-                { headerName: 'Nome', field: 'nome', minWidth: 80 },
-                { headerName: 'Descrição', field: 'descricao' },
+                { headerName: 'Id', field: 'id', minWidth: 90 },
+                { headerName: 'Nome', field: 'nome', minWidth: 100 },
+                { headerName: 'Descrição', field: 'descricao', minWidth: 120 },
                 {
                     headerName: 'Criado em',
                     field: 'created_at',
@@ -91,7 +92,7 @@
                             day: '2-digit',
                         });
                     },
-                    // maxWidth: 120,
+                    minWidth: 120,
                 },
                 {
                     headerName: 'Atualizado em',
@@ -103,7 +104,7 @@
                             day: '2-digit',
                         });
                     },
-                    // maxWidth: 140,
+                    minWidth: 150,
                 },
                 {
                     headerName: 'Ações',
@@ -126,7 +127,7 @@
                             </form>
                         `;
                     },
-                    // minWidth: 190,
+                    minWidth: 190,
                 },
             ],
             defaultColDef: {

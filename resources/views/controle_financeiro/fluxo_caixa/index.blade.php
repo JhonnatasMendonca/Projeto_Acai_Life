@@ -6,20 +6,20 @@
         <i class="bi bi-cash"></i> Fluxo de caixa
     </h2>
     <hr style="border: 1px solid #fff;" class=" mb-3">
-    <div class="" style="display: flex; justify-content: space-between; align-items: center;">
+    <div class="box-inputs container-fluid  row">
         <div class="col-md-6 p-0" style="">
-            <input type="search" class="form-control " placeholder="Pesquisar na tabela" id="searchInput" style="">
+            <input type="search" class="form-control mt-2" placeholder="Pesquisar na tabela" id="searchInput" style="">
         </div>
-        <div class="" style="display: flex;  align-items: center;gap: 10px;">
-            <button class="btn pesquisa" id="addUsuarioButton" style="width: 100%; background-color:#0a6109;" data-toggle="modal"
+        <div class="box-buttons-modals container-fluid  col-md-6 d-flex justify-content-between align-items-center" >
+            <button class="button-modal col-md-4 mb-2 mt-2 btn pesquisa" id="addUsuarioButton" style="width: 100%; margin-right: 10px; background-color:#0a6109;" data-toggle="modal"
                 data-target="#modalCadastrarUsuario">
                 <i class="bi bi-cash"></i> Abrir caixa
             </button>
-            <button class="btn  pesquisa" id="addRetiradaButton" style="width: 100%; background-color:#e00b16;" data-toggle="modal"
+            <button class="button-modal col-md-4 mb-2 mt-2 btn pesquisa" id="addRetiradaButton" style="width: 100%; margin-right: 10px; background-color:#e00b16;" data-toggle="modal"
                 data-target="#modalCadastrarRetirada">
                 <i class="bi bi-cash"></i> Retirada de caixa
             </button>
-            <button class="btn pesquisa" id="addCompraButton" style="width: 100%; background-color: #051D40;gap: 10px;"
+            <button class="button-modal col-md-4 mb-2 mt-2 btn pesquisa" id="addCompraButton" style="width: 100%; margin-right: 10px; background-color: #051D40;gap: 10px;"
                 data-toggle="modal" data-target="#modalRegistrarCompra" onmouseover="this.style.backgroundColor='#0a2b5c';"
                 onmouseout="this.style.backgroundColor='#051D40';">
                 <i class="bi bi-cart"></i> Registrar Compra

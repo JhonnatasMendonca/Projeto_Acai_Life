@@ -6,22 +6,22 @@
         <i class="bi bi-box-seam"></i> Controle de Estoque
     </h2>
     <hr style="border: 1px solid #fff;" class=" mb-3">
-    <div class="" style="display: flex; justify-content: space-between; align-items: center;">
-        <div class="col-md-6 p-0" style="">
-            <input type="search" class="form-control " placeholder="Pesquisar na tabela" id="searchInput" style="">
+    <div class="box-inputs container-fluid  row">
+        <div class="col-md-6 p-0 search-test" style="">
+            <input type="search" class="form-control mt-2" placeholder="Pesquisar na tabela" id="searchInput" style="width: 100%;">
         </div>
-        <div class="" style="display: flex;  align-items: center;gap: 10px;">
-            <button class="btn  pesquisa" id="addProductButton" style="width: 100%;" data-toggle="modal"
-                data-target="#modalCadastrarProduto">
-                <i class="bi bi-box"></i> Cadastrar Produto
+        <div class="box-buttons-modals container-fluid  col-md-6 d-flex justify-content-between align-items-center" >
+            <button class="button-modal col-md-4 mb-2 mt-2 btn pesquisa teste1" id="addProductButton" style="width: 100%; margin-right: 10px;" data-toggle="modal"
+                data-target="#modalCadastrarProduto" style="color: #592f6c">
+                <i class="bi bi-box test-salvar"></i> Cadastrar Produto
             </button>
 
-            <button class="btn pesquisa" id="addInsumoButton" style="width: 100%; gap: 10px;" data-toggle="modal"
+            <button class="button-modal col-md-4 mb-2 mt-2 btn pesquisa teste1" id="addInsumoButton" style="width: 100%; margin-right: 10px;" data-toggle="modal" gap: 10px;" data-toggle="modal"
                 data-target="#modalCadastrarInsumo">
                 <i class="bi bi-tags"></i> Cadastrar Insumo
             </button>
 
-            <button class="btn pesquisa" id="addCompraButton" style="width: 100%; background-color: #051D40;gap: 10px;"
+            <button class="button-modal col-md-4 mb-2 mt-2 btn pesquisa teste1" id="addCompraButton" style="width: 100%; margin-right: 10px;" data-toggle="modal" background-color: #051D40;gap: 10px;"
                 data-toggle="modal" data-target="#modalRegistrarCompra" onmouseover="this.style.backgroundColor='#0a2b5c';"
                 onmouseout="this.style.backgroundColor='#051D40';">
                 <i class="bi bi-cart"></i> Registrar Compra
@@ -149,8 +149,8 @@
                 {
                     headerName: 'Tipo',
                     field: 'tipo',
-                    maxWidth: 100,
-                    pinned: 'left',
+                    minWidth: 100,
+                    // pinned: 'left',
                     cellStyle: params => {
                         if (params.value === 'Insumo') {
                             return { color: '#fff', backgroundColor: '#28a745', fontWeight: 'bold' };
@@ -163,23 +163,23 @@
                 {
                     headerName: 'Nome',
                     field: 'nome',
-                    minWidth: 150,
+                    minWidth: 100,
                 },
                 {
                     headerName: 'Categoria',
                     field: 'categoria',
-                    minWidth: 150,
+                    minWidth: 120,
                 },
                 {
                     headerName: 'Descrição',
                     field: 'descricao',
-                    minWidth: 200,
+                    minWidth: 120,
                 },
                 {
                     headerName: 'Estoque',
                     field: 'estoque',
                     maxWidth: 110,
-                    minWidth: 110,
+                    minWidth: 120,
                     valueFormatter: params => params.value ? `${params.value} und` : '',
                 },
                 {

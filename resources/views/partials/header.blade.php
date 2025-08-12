@@ -1,11 +1,17 @@
-<nav class="navbar navbar-expand-md navbar-dark sticky-top" style="background-color: #051D40;">
+<!-- <style>
+    .active{
+    color: #f53636 !important;
+}
+</style> -->
+
+<nav class="navbar navbar-expand-md navbar-dark sticky-top" style="background-color: #ffffffff;">
     <a class="navbar-brand" href="{{ route('home') }}">
         <img src="{{ asset('images/acai_nova_log_2.png') }}" alt="Açai Life Logo" class="img-fluid mx-auto d-block"
             style="max-width: 50px; margin-left: 10px;">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" style="border-color: #592f6c !important;">
+        <span class="navbar-toggler-icon" style="color: #592f6c !important;"></span>
     </button>
     <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarNavDropdown" style="display: fkex; justify-content:space-between;">
@@ -80,7 +86,7 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
-                            style="color: #fff; display: flex; align-items: center;"
+                            style="color: #592f6c; display: flex; align-items: center;"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i style="font-size: 20px; margin-right:10px;" class="bi bi-person-circle"></i>{{ auth()->user()->nome_usuario}}
                         </a>

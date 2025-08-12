@@ -3,16 +3,17 @@
 @section('content')
 
     <h2 class="mt-4 mb-2">
-        <i class="bi bi-person"></i> Cadastro de Clientes
+        <i class="bi bi-person cad-add"></i> Cadastro de Clientes
     </h2>
     <hr style="border: 1px solid #fff;" class=" mb-3">
-    <div class="" style="display: flex; justify-content: space-between; align-items: center;">
+    <div class="box-inputs container-fluid  row">
         <div class="col-md-6 p-0" style="">
-            <input type="search" class="form-control " placeholder="Pesquisar na tabela" id="searchInput" style="">
+            <input type="search" class="form-control btn-search mt-2" placeholder="Pesquisar na tabela" id="searchInput" style="">
         </div>
-        <div class="" style="display: flex;  align-items: center;gap: 10px;">
-            <button class="btn  pesquisa" id="addClienteButton" style="width: 100%;" data-toggle="modal"
-                data-target="#modalCadastrarCliente">
+        <div class="box-buttons-modals container-fluid  col-md-6 d-flex justify-content-between align-items-center" >
+            <div></div>
+            <button class="button-modal col-md-4 mt-2 btn pesquisa btn-cadastrar-cliente" id="addClienteButton" style="width: 100%;" data-toggle="modal"
+                data-target="#modalCadastrarCliente" style="">
                 <i class="bi bi-person-add"></i> Cadastrar Cliente
             </button>
 
@@ -78,17 +79,17 @@
 
         var gridOptions = {
             columnDefs: [
-                { headerName: 'Nome', field: 'nome', minWidth: 80 },
+                { headerName: 'Nome', field: 'nome', minWidth: 100 },
                 { headerName: 'Sobrenome', field: 'sobrenome', minWidth: 150 },
-                { headerName: 'Email', field: 'email', minWidth: 200 },
+                { headerName: 'Email', field: 'email', minWidth: 100 },
                 { headerName: 'Telefone', field: 'telefone', minWidth: 110, minWidth: 110 },
-                { headerName: 'CEP', field: 'cep', maxWidth: 110 },
-                { headerName: 'Endereco', field: 'endereco', minWidth: 200 },
+                { headerName: 'CEP', field: 'cep', minWidth: 100 },
+                { headerName: 'Endereco', field: 'endereco', minWidth: 120 },
                 {
                     headerName: 'Ações',
                     field: 'acoes',
                     cellRenderer: function(params) {
-                        const id = params.data.cpf_usuario;
+                        const id = params.data.id;
                         const rota = `/clientes/${id}`;
                         const csrf = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
@@ -105,7 +106,7 @@
                             </form>
                         `;
                     },
-                    minWidth: 190,
+                    minWidth: 100,
                 },
             ],
             defaultColDef: {

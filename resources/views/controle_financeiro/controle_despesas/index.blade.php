@@ -6,12 +6,13 @@
         <i class="bi bi-credit-card"></i> Controle de Despesas
     </h2>
     <hr style="border: 1px solid #fff;" class=" mb-3">
-    <div class="" style="display: flex; justify-content: space-between; align-items: center;">
+    <div class="box-inputs container-fluid  row">
         <div class="col-md-6 p-0" style="">
-            <input type="search" class="form-control " placeholder="Pesquisar na tabela" id="searchInput" style="">
+            <input type="search" class="form-control mt-2" placeholder="Pesquisar na tabela" id="searchInput" style="">
         </div>
-        <div class="" style="display: flex;  align-items: center;gap: 10px;">
-            <button class="btn  pesquisa" id="addClienteButton" style="width: 100%;" data-toggle="modal"
+        <div class="box-buttons-modals container-fluid  col-md-6 d-flex justify-content-between align-items-center" >
+            <div></div>
+            <button class="button-modal col-md-4 mt-2 btn pesquisa" id="addClienteButton" style="width: 100%;" data-toggle="modal"
                 data-target="#modalCadastrarDespesa">
                 <i class="bi bi-credit-card"></i> Registrar Despesa
             </button>
@@ -78,12 +79,12 @@
 
         var gridOptions = {
             columnDefs: [
-                { headerName: 'Id', field: 'id', maxWidth: 80 },
-                { headerName: 'Nome', field: 'nome', minWidth: 80 },
+                { headerName: 'Id', field: 'id', minWidth: 100 },
+                { headerName: 'Nome', field: 'nome', minWidth: 100 },
                 { 
                     headerName: 'Data do lançamento', 
                     field: 'data_lancamento', 
-                    minWidth: 110,
+                    minWidth: 190,
                     valueFormatter: params => {
                         if (!params.value) return '';
                         const date = new Date(params.value);
@@ -92,9 +93,9 @@
                     }
                 },
                 { headerName: 'Categoria', field: 'categoria', minWidth: 150 },
-                { headerName: 'Valor', field: 'valor', minWidth: 200 },
-                { headerName: 'Status', field: 'status', maxWidth: 110 },
-                { headerName: 'Observação', field: 'observacao', minWidth: 200 },
+                { headerName: 'Valor', field: 'valor', minWidth: 100 },
+                { headerName: 'Status', field: 'status', minWidth: 110 },
+                { headerName: 'Observação', field: 'observacao', minWidth: 130 },
                 {
                     headerName: 'Ações',
                     field: 'acoes',
@@ -116,7 +117,7 @@
                             </form>
                         `;
                     },
-                    minWidth: 190,
+                    minWidth: 120,
                 },
             ],
             defaultColDef: {
