@@ -26,7 +26,7 @@
 
         <div class="form-group col-md-4">
             <label for="preco_custo">Preço de custo (R$)</label>
-            <input type="number" name="preco_custo" class="form-control" id="preco_custo" readonly>
+            <input type="number" name="preco_custo" class="form-control" id="preco_custo" readonly required>
         </div>
 
         <div class="form-group col-md-4">
@@ -90,7 +90,6 @@
 
     </div>
     <div class="col-md-12 d-flex justify-content-end mt-3">
-        <button type="button" class="btn background_cancel">Cancelar</button>
         <button type="submit" class="btn background_sucess">Cadastrar</button>
     </div>
 </form>

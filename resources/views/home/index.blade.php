@@ -16,11 +16,15 @@
         }
 
         .bg-blue {
-            background: linear-gradient(135deg, #007cf0, #00dfd8);
+            background: linear-gradient(135deg, #00bd29ff, #1e6d32ff);
         }
 
         .bg-orange {
-            background: linear-gradient(135deg, #f7971e, #ffd200);
+            background: linear-gradient(135deg, #ff8800ff, #ffd200);
+        }
+
+        .bg-red {
+            background: linear-gradient(135deg, #cc1e1eff, #bd3f20ff);
         }
 
         h4 {
@@ -71,7 +75,7 @@
                 </div>
             </div>
             <div class="col-md-3 mb-2">
-                <div class="card-metric bg-orange">
+                <div class="card-metric bg-red">
                     <h4>R$ {{ number_format($despesaMesAtual, 2, ',', '.') }} DESPESA MÊS</h4>
                 </div>
             </div>

@@ -43,7 +43,6 @@
 
     </div>
     <div class="col-md-12 d-flex justify-content-end mt-3">
-        <button type="button" class="btn background_cancel">Cancelar</button>
         <button type="submit" class="btn background_sucess">Rgistrar</button>
     </div>
 </form>

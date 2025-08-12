@@ -149,8 +149,8 @@
                 {
                     headerName: 'Tipo',
                     field: 'tipo',
-                    maxWidth: 100,
-                    pinned: 'left',
+                    minWidth: 100,
+                    // pinned: 'left',
                     cellStyle: params => {
                         if (params.value === 'Insumo') {
                             return { color: '#fff', backgroundColor: '#28a745', fontWeight: 'bold' };
@@ -163,23 +163,23 @@
                 {
                     headerName: 'Nome',
                     field: 'nome',
-                    minWidth: 150,
+                    minWidth: 100,
                 },
                 {
                     headerName: 'Categoria',
                     field: 'categoria',
-                    minWidth: 150,
+                    minWidth: 120,
                 },
                 {
                     headerName: 'Descrição',
                     field: 'descricao',
-                    minWidth: 200,
+                    minWidth: 120,
                 },
                 {
                     headerName: 'Estoque',
                     field: 'estoque',
                     maxWidth: 110,
-                    minWidth: 110,
+                    minWidth: 120,
                     valueFormatter: params => params.value ? `${params.value} und` : '',
                 },
                 {

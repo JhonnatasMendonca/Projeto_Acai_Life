@@ -79,9 +79,9 @@
 
         var gridOptions = {
             columnDefs: [
-                { headerName: 'Id', field: 'id', maxWidth: 80 },
-                { headerName: 'Nome', field: 'nome', minWidth: 80 },
-                { headerName: 'Descrição', field: 'descricao' },
+                { headerName: 'Id', field: 'id', minWidth: 90 },
+                { headerName: 'Nome', field: 'nome', minWidth: 100 },
+                { headerName: 'Descrição', field: 'descricao', minWidth: 120 },
                 {
                     headerName: 'Criado em',
                     field: 'created_at',
@@ -92,7 +92,7 @@
                             day: '2-digit',
                         });
                     },
-                    // maxWidth: 120,
+                    minWidth: 120,
                 },
                 {
                     headerName: 'Atualizado em',
@@ -104,7 +104,7 @@
                             day: '2-digit',
                         });
                     },
-                    // maxWidth: 140,
+                    minWidth: 150,
                 },
                 {
                     headerName: 'Ações',
@@ -127,7 +127,7 @@
                             </form>
                         `;
                     },
-                    // minWidth: 190,
+                    minWidth: 190,
                 },
             ],
             defaultColDef: {

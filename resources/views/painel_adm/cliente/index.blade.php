@@ -79,17 +79,17 @@
 
         var gridOptions = {
             columnDefs: [
-                { headerName: 'Nome', field: 'nome', minWidth: 80 },
+                { headerName: 'Nome', field: 'nome', minWidth: 100 },
                 { headerName: 'Sobrenome', field: 'sobrenome', minWidth: 150 },
-                { headerName: 'Email', field: 'email', minWidth: 200 },
+                { headerName: 'Email', field: 'email', minWidth: 100 },
                 { headerName: 'Telefone', field: 'telefone', minWidth: 110, minWidth: 110 },
-                { headerName: 'CEP', field: 'cep', maxWidth: 110 },
-                { headerName: 'Endereco', field: 'endereco', minWidth: 200 },
+                { headerName: 'CEP', field: 'cep', minWidth: 100 },
+                { headerName: 'Endereco', field: 'endereco', minWidth: 120 },
                 {
                     headerName: 'Ações',
                     field: 'acoes',
                     cellRenderer: function(params) {
-                        const id = params.data.cpf_usuario;
+                        const id = params.data.id;
                         const rota = `/clientes/${id}`;
                         const csrf = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
@@ -106,7 +106,7 @@
                             </form>
                         `;
                     },
-                    minWidth: 190,
+                    minWidth: 100,
                 },
             ],
             defaultColDef: {

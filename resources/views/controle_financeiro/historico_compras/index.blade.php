@@ -82,12 +82,12 @@
 
         var gridOptions = {
             columnDefs: [
-                { headerName: 'Id', field: 'id', maxWidth: 80 },
-                { headerName: 'Fornecedor', field: 'nome_fornecedor', minWidth: 80 },
+                { headerName: 'Id', field: 'id', minWidth: 80 },
+                { headerName: 'Fornecedor', field: 'nome_fornecedor', minWidth: 130 },
                 { 
                     headerName: 'Data da compra', 
                     field: 'data_compra', 
-                    minWidth: 110,
+                    minWidth: 170,
                     valueFormatter: params => {
                         if (!params.value) return '';
                         const date = new Date(params.value);
@@ -95,7 +95,7 @@
                         return date.toLocaleDateString('pt-BR');
                     }
                 },
-                { headerName: 'Valor total', field: 'valor_total', minWidth: 200 },
+                { headerName: 'Valor total', field: 'valor_total', minWidth: 130 },
                 { headerName: 'Forma de pagamento', field: 'forma_pagamento', minWidth: 200 },
                 // {
                 //     headerName: 'Ações',

@@ -7,12 +7,13 @@
 
     .modal-content {
         padding: 0;
-        width: 900px;
+        width: 95%;
+        margin: 0 auto;
     }
 
     .modal-dialog {
         width: 100%;
-        max-width: 900px;
+        max-width: 95%;
     }
 
     .modal-dialog {
@@ -66,7 +67,7 @@
 <div class="modal fade " id="{{ $id ?? 'modalPadrao' }}" tabindex="-1" role="dialog"
     aria-labelledby="{{ $id ?? 'modalPadrao' }}Label" aria-hidden="true">
     <div class="modal-dialog {{ $size ?? '' }}" role="document">
-        <div class="modal-content container">
+        <div class="modal-content ">
             <div class="modal-header">
                 
                 <div class="position_center_row">

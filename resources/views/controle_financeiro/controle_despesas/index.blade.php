@@ -79,12 +79,12 @@
 
         var gridOptions = {
             columnDefs: [
-                { headerName: 'Id', field: 'id', maxWidth: 80 },
-                { headerName: 'Nome', field: 'nome', minWidth: 80 },
+                { headerName: 'Id', field: 'id', minWidth: 100 },
+                { headerName: 'Nome', field: 'nome', minWidth: 100 },
                 { 
                     headerName: 'Data do lançamento', 
                     field: 'data_lancamento', 
-                    minWidth: 110,
+                    minWidth: 190,
                     valueFormatter: params => {
                         if (!params.value) return '';
                         const date = new Date(params.value);
@@ -93,9 +93,9 @@
                     }
                 },
                 { headerName: 'Categoria', field: 'categoria', minWidth: 150 },
-                { headerName: 'Valor', field: 'valor', minWidth: 200 },
-                { headerName: 'Status', field: 'status', maxWidth: 110 },
-                { headerName: 'Observação', field: 'observacao', minWidth: 200 },
+                { headerName: 'Valor', field: 'valor', minWidth: 100 },
+                { headerName: 'Status', field: 'status', minWidth: 110 },
+                { headerName: 'Observação', field: 'observacao', minWidth: 130 },
                 {
                     headerName: 'Ações',
                     field: 'acoes',
@@ -117,7 +117,7 @@
                             </form>
                         `;
                     },
-                    minWidth: 190,
+                    minWidth: 120,
                 },
             ],
             defaultColDef: {

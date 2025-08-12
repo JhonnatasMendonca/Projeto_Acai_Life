@@ -82,17 +82,17 @@
             columnDefs: [{
                     headerName: 'Id',
                     field: 'id',
-                    maxWidth: 80
+                    minWidth: 80
                 },
                 {
                     headerName: 'Nome',
                     field: 'nome',
-                    minWidth: 80
+                    minWidth: 100
                 },
                 {
                     headerName: 'Descrição',
                     field: 'descricao',
-                    minWidth: 150
+                    minWidth: 120
                 },
                 {
                     headerName: 'Permissões',
@@ -102,7 +102,7 @@
                             params.data.permissoes.map(p => p.nome).join(', ') :
                             '';
                     },
-                    minWidth: 200,
+                    minWidth: 140,
                 },
                 {
                     headerName: 'Criado em',
@@ -126,7 +126,7 @@
                             day: '2-digit',
                         });
                     },
-                    minWidth: 120,
+                    minWidth: 150,
                 },
                 {
                     headerName: 'Ações',
