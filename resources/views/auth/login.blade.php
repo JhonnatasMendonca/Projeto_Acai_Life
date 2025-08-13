@@ -6,7 +6,7 @@
         <div style="width: 400px;" class="container mt-2 mb-5 login-t" >
             <div class="position_center_row mb-3">
                 <div class="line"></div>
-                <h5>LOGIN</h5>
+                <h5>LOGIN TESTE</h5>
                 <div class="line"></div>
             </div>
             <form class="form_container" method="POST" action="{{ route('entrar') }}">
