@@ -290,7 +290,7 @@ input:focus {
 
 
 
-@media screen and (min-width: 375px) and (max-width: 667px) {
+@media screen and (min-width: 250px) and (max-width: 667px) {
 
     .div_canter {
         flex-direction: column;
