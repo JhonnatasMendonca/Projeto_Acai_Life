@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="favicon icon" href="{{ asset('images/favicon.png') }}">
+    <link rel="favicon icon" href="{{ asset('images/favicon.PNG') }}">
     <title>@yield('title')</title>
 
 
@@ -53,7 +53,6 @@
     
     <!-- Scripts -->
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
-    {{-- <script src="{{ asset('js/bootstrap.min.js') }}"></script> --}}
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('js/toastr.min.js') }}"></script>
     <script src="{{ asset('js/flatpickr.js') }}"></script>
