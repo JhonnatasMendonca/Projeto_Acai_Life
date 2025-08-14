@@ -290,12 +290,12 @@ input:focus {
 
 
 
-@media screen and (min-width: 250px) and (max-width: 667px) {
+@media screen and (min-width: 200px) and (max-width: 667px) {
 
     .div_canter {
         flex-direction: column;
         height: auto;
-        padding: 20px 10px;login-t
+        padding: 20px 10px;
     }
 
     nav {
